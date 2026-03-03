@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSCI 563 – Full Cheatsheet Study Guide</title>
+<style>
+:root {
+  --bg:#0d0f1a; --card:#161928; --card2:#1e2238; --card3:#252b45;
+  --accent:#7c6fff; --teal:#00c9b1; --pink:#ff5f8f; --gold:#ffc84a;
+  --blue:#4fa8ff; --green:#4ecb71; --orange:#ff8c42;
+  --text:#e8ecff; --muted:#8890b0; --border:#272d4a;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.75;}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#161928 0%,#0d0f1a 50%,#1a0d2e 100%);border-bottom:1px solid var(--border);padding:2.5rem 2rem 2rem;text-align:center;}
+.hero h1{font-size:2rem;font-weight:900;background:linear-gradient(90deg,var(--accent),var(--teal),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero p{color:var(--muted);margin-top:.4rem;font-size:.95rem;}
+
+/* NAV */
+nav{background:var(--card);border-bottom:1px solid var(--border);padding:.6rem 1.5rem;position:sticky;top:0;z-index:100;display:flex;gap:.8rem;flex-wrap:wrap;}
+nav a{color:var(--muted);text-decoration:none;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:.25rem .5rem;border-radius:5px;transition:all .2s;}
+nav a:hover{color:var(--teal);background:rgba(0,201,177,.08);}
+
+/* LAYOUT */
+.container{max-width:980px;margin:0 auto;padding:2rem 1.4rem 5rem;}
+section{margin-bottom:3.5rem;}
+
+/* SECTION HEADER */
+.sh{display:flex;align-items:center;gap:.9rem;border-bottom:2px solid var(--border);padding-bottom:.7rem;margin-bottom:1.6rem;}
+.snum{width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;flex-shrink:0;}
+.sh h2{font-size:1.35rem;font-weight:800;}
+
+/* CARDS */
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:1rem;}
+.card h3{font-size:1rem;font-weight:700;margin-bottom:.6rem;}
+.card h4{font-size:.88rem;font-weight:700;margin:.9rem 0 .35rem;}
+
+/* CALLOUTS */
+.box{border-radius:9px;padding:.9rem 1.1rem;margin:.8rem 0;border-left:4px solid;}
+.box.ana{background:rgba(124,111,255,.09);border-color:var(--accent);}
+.box.ans{background:rgba(0,201,177,.09);border-color:var(--teal);}
+.box.warn{background:rgba(255,95,143,.09);border-color:var(--pink);}
+.box.tip{background:rgba(255,200,74,.09);border-color:var(--gold);}
+.box.code{background:rgba(79,168,255,.07);border-color:var(--blue);}
+.box-lbl{font-size:.68rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;}
+.box.ana .box-lbl{color:var(--accent);}
+.box.ans .box-lbl{color:var(--teal);}
+.box.warn .box-lbl{color:var(--pink);}
+.box.tip .box-lbl{color:var(--gold);}
+.box.code .box-lbl{color:var(--blue);}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;margin:.8rem 0;font-size:.84rem;}
+th{background:var(--card2);color:var(--teal);padding:.55rem .75rem;text-align:left;border:1px solid var(--border);}
+td{padding:.5rem .75rem;border:1px solid var(--border);}
+tr:nth-child(even) td{background:rgba(255,255,255,.015);}
+
+/* CODE */
+code{background:#0a0c18;border:1px solid var(--border);border-radius:4px;padding:.12em .38em;font-family:'Cascadia Code','Fira Code',monospace;font-size:.84em;color:var(--gold);}
+pre{background:#0a0c18;border:1px solid var(--border);border-radius:9px;padding:.9rem 1rem;overflow-x:auto;margin:.7rem 0;}
+pre code{background:none;border:none;padding:0;color:#c9d1ff;font-size:.84rem;line-height:1.6;}
+
+/* BADGES */
+.badge{display:inline-block;padding:.18em .65em;border-radius:999px;font-size:.72rem;font-weight:800;margin:.1rem;}
+.bp{background:rgba(0,201,177,.16);color:var(--teal);}
+.bc{background:rgba(255,95,143,.16);color:var(--pink);}
+.bpar{background:rgba(124,111,255,.18);color:var(--accent);}
+.bg{background:rgba(78,203,113,.16);color:var(--green);}
+.bo{background:rgba(255,140,66,.16);color:var(--orange);}
+
+/* GRID */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;}
+@media(max-width:640px){.g2,.g3{grid-template-columns:1fr;}}
+
+/* MISC */
+p{margin-bottom:.65rem;}
+ul,ol{padding-left:1.3rem;margin-bottom:.65rem;}
+li{margin-bottom:.28rem;}
+.hl{color:var(--teal);font-weight:700;}
+.hlp{color:var(--accent);font-weight:700;}
+.hlg{color:var(--gold);font-weight:700;}
+.hlo{color:var(--orange);font-weight:700;}
+.mini{font-size:.82rem;color:var(--muted);}
+.step{display:flex;gap:.8rem;align-items:flex-start;margin:.5rem 0;}
+.step-num{background:var(--accent);color:#fff;width:1.5rem;height:1.5rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:900;flex-shrink:0;margin-top:.15rem;}
+
+/* DIAGRAM */
+.diag{background:#0a0c18;border:1px solid var(--border);border-radius:9px;padding:1rem;margin:.7rem 0;font-family:monospace;font-size:.82rem;color:#c9d1ff;white-space:pre;overflow-x:auto;}
+
+/* FORMULA */
+.formula{background:var(--card2);border:1px solid var(--border);border-radius:9px;padding:.8rem 1.1rem;margin:.7rem 0;font-family:monospace;font-size:.95rem;color:var(--gold);text-align:center;letter-spacing:.03em;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>📋 DSCI 563 – Full Cheatsheet Breakdown</h1>
+  <p>Every concept from the cheatsheet, taught from absolute zero with real-life analogies</p>
+  <p class="mini" style="margin-top:.5rem;">K-Means · DBSCAN · GMM · Hierarchical Clustering · PCA · NMF · SVD · LSA · Autoencoders · Silhouette · Scaling</p>
+</div>
+
+<nav>
+  <a href="#unsup">Unsupervised</a>
+  <a href="#kmeans">K-Means</a>
+  <a href="#silhouette">Silhouette</a>
+  <a href="#dbscan">DBSCAN</a>
+  <a href="#gmm">GMM</a>
+  <a href="#hierarchical">Hierarchical</a>
+  <a href="#pca">PCA</a>
+  <a href="#svd">SVD</a>
+  <a href="#nmf">NMF</a>
+  <a href="#lsa">LSA</a>
+  <a href="#autoencoder">Autoencoders</a>
+  <a href="#scaling">Scaling</a>
+  <a href="#compare">Big Comparison</a>
+</nav>
+
+<div class="container">
+
+<!-- ══════════════════════════════════════
+     SECTION 0: UNSUPERVISED LEARNING
+═══════════════════════════════════════ -->
+<section id="unsup">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--accent),var(--teal))">0</div>
+    <h2>Unsupervised Learning — The Big Picture</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--teal)">What is it and why do we need it?</h3>
+    <p>In <strong>supervised learning</strong> you have data + labels (like photos + whether they're cats or dogs). You train the model to predict the label.</p>
+    <p>In <strong>unsupervised learning</strong> you only have data — <em>no labels</em>. You want the machine to discover hidden structure on its own.</p>
+
+    <div class="box ana">
+      <div class="box-lbl">🌍 Real-Life Analogy</div>
+      A librarian sorts thousands of books without a guide. She notices patterns: these books all have maps → geography; those have equations → math. Nobody told her the categories — she found them. That's unsupervised learning.
+    </div>
+
+    <h4>The Two Main Tasks</h4>
+    <div class="g2">
+      <div class="box ans">
+        <div class="box-lbl">🔵 Clustering</div>
+        <strong>Goal:</strong> Group similar things together<br>
+        <strong>Methods:</strong> K-Means, DBSCAN, GMM, Hierarchical<br>
+        <strong>Output:</strong> Cluster labels for each point
+      </div>
+      <div class="box tip">
+        <div class="box-lbl">🟡 Dimensionality Reduction</div>
+        <strong>Goal:</strong> Compress many features into fewer<br>
+        <strong>Methods:</strong> PCA, NMF, SVD, Autoencoders<br>
+        <strong>Output:</strong> A smaller representation of data
+      </div>
+    </div>
+
+    <h4>Applications from the Cheatsheet</h4>
+    <table>
+      <tr><th>Application</th><th>What it does</th></tr>
+      <tr><td>Customer Segmentation</td><td>Group customers by purchasing behavior for targeted marketing</td></tr>
+      <tr><td>Document Clustering</td><td>Group news articles by topic (sports, politics, finance...)</td></tr>
+      <tr><td>Image Compression</td><td>Represent images with fewer numbers (PCA/NMF)</td></tr>
+      <tr><td>Anomaly Detection</td><td>Find unusual data points (fraudulent transactions)</td></tr>
+      <tr><td>Visualization</td><td>Compress high-dimensional data to 2D for plotting</td></tr>
+      <tr><td>Feature Engineering</td><td>Create better input features for supervised models</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 1: K-MEANS
+═══════════════════════════════════════ -->
+<section id="kmeans">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,#4fa8ff,var(--accent))">1</div>
+    <h2>K-Means Clustering — Deep Dive</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">The Core Concept</h3>
+    <p>K-Means splits data into <span class="hl">K clusters</span>. Each cluster is defined by its <strong>centroid</strong> (mean center). Each point belongs to the cluster whose centroid is closest.</p>
+
+    <div class="box ana">
+      <div class="box-lbl">🏙️ Fire Station Analogy</div>
+      Place K fire stations across a city. Every house is served by its nearest station. K-Means: (1) places stations, (2) assigns each house to nearest station, (3) moves stations to the average position of all their houses, (4) repeats until stable. The fire stations are the centroids!
+    </div>
+
+    <h4>The Full Algorithm (Step by Step)</h4>
+    <div class="step"><div class="step-num">1</div><div><strong>Pick K</strong> — decide how many clusters you want. This is a hyperparameter you choose.</div></div>
+    <div class="step"><div class="step-num">2</div><div><strong>Initialize centroids</strong> — place K starting centroids. Either random or K-Means++ (smarter, spreads them out).</div></div>
+    <div class="step"><div class="step-num">3</div><div><strong>Assignment step</strong> — assign each data point to its nearest centroid (using Euclidean distance).</div></div>
+    <div class="step"><div class="step-num">4</div><div><strong>Update step</strong> — move each centroid to the <em>mean</em> (average position) of all points assigned to it.</div></div>
+    <div class="step"><div class="step-num">5</div><div><strong>Repeat</strong> steps 3 and 4 until assignments don't change (convergence).</div></div>
+
+    <div class="box warn">
+      <div class="box-lbl">⚠️ Convergence</div>
+      K-Means always converges (stops changing) but may get stuck at a local minimum — a decent solution that isn't the best possible. This is why sklearn runs it multiple times with different initializations (<code>n_init=10</code> by default) and keeps the best result.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">The Objective Function — What K-Means Minimizes</h3>
+    <p>K-Means tries to minimize <strong>inertia</strong> (also called within-cluster sum of squares, WCSS):</p>
+
+    <div class="formula">Inertia = Σ Σ || xᵢ - μₖ ||²</div>
+
+    <p>Where μₖ is the centroid of cluster k and xᵢ is each point in that cluster. Lower inertia = tighter, more compact clusters.</p>
+
+    <div class="box ana">
+      <div class="box-lbl">📏 Inertia Analogy</div>
+      Imagine measuring how far everyone lives from their nearest fire station. Add up all those distances squared. That's inertia. K-Means tries to place fire stations to minimize this total "travel distance."
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">sklearn Code — Full Reference</h3>
+    <pre><code>from sklearn.cluster import KMeans
+
+# Create and fit
+km = KMeans(
+    n_clusters=4,      # K — number of clusters (YOU choose)
+    n_init=10,         # Run 10 times, keep best (avoids local minima)
+    random_state=42    # For reproducibility
+)
+labels = km.fit_predict(X)  # Fit and get labels in one step
+
+# Key attributes (things you can access AFTER fitting)
+km.cluster_centers_   # Shape (K, d) — the K centroids
+km.labels_            # Cluster assignment for each training point
+km.inertia_           # Final inertia value (lower = better)
+km.n_iter_            # How many iterations it took
+
+# To predict new points
+km.predict(X_new)     # Uses existing centroids — no re-fitting!</code></pre>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">Parameters vs. Hyperparameters</h3>
+    <table>
+      <tr><th>Type</th><th>What</th><th>How set</th></tr>
+      <tr><td><span class="badge bpar">Hyperparameter</span></td><td><code>n_clusters</code> (K)</td><td>YOU set it before training</td></tr>
+      <tr><td><span class="badge bp">Parameter</span></td><td>W matrix: the K cluster centers (shape K × d)</td><td>Model learns during <code>.fit()</code></td></tr>
+    </table>
+    <div class="box tip">
+      <div class="box-lbl">💡 Intuition</div>
+      <strong>Hyperparameter</strong> = dial you turn before pressing "go". <strong>Parameter</strong> = the model figures it out itself. For K-Means, you pick K, the model figures out WHERE the K centers go.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">Choosing K — The Elbow &amp; Silhouette Methods</h3>
+
+    <h4>Elbow Method (Inertia Plot)</h4>
+    <p>Run K-Means for K=2,3,4,5,6,7... and plot inertia. It always decreases as K grows (more clusters = smaller distances). Look for the "elbow" — where the decrease suddenly slows. That K is usually optimal.</p>
+    <div class="box ana">
+      <div class="box-lbl">💪 Elbow Analogy</div>
+      Think of diminishing returns. At K=4, adding a 5th cluster cuts inertia a lot. At K=8, adding a 9th barely helps. The elbow is where adding more stations stops being worth it.
+    </div>
+    <div class="box warn">
+      <div class="box-lbl">⚠️ Limitation</div>
+      The elbow is often not obvious — the curve can be smooth with no clear kink. Use silhouette score as a backup!
+    </div>
+
+    <h4>K-Means++ Initialization</h4>
+    <p>Instead of random initialization, K-Means++ picks centroids that are spread far apart. The 2nd centroid is chosen with probability proportional to distance from the 1st, and so on. This gives a better starting point and speeds up convergence. sklearn uses this by default.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">When K-Means Works &amp; When It Fails</h3>
+    <div class="g2">
+      <div>
+        <h4>✅ Works Great When</h4>
+        <ul>
+          <li>Clusters are roughly <strong>spherical</strong> (round blobs)</li>
+          <li>Clusters are <strong>similar in size</strong></li>
+          <li>Clusters have <strong>similar density</strong></li>
+          <li>You need speed — K-Means is very fast</li>
+        </ul>
+      </div>
+      <div>
+        <h4>❌ Fails When</h4>
+        <ul>
+          <li><strong>Non-spherical shapes</strong> — rings, crescents, long thin clusters</li>
+          <li><strong>Very different densities</strong> — one tight cluster, one spread out</li>
+          <li><strong>Many outliers</strong> — outliers drag centroids toward them</li>
+          <li><strong>Overlapping clusters</strong> — hard boundaries can't handle soft overlaps</li>
+        </ul>
+      </div>
+    </div>
+    <div class="box warn">
+      <div class="box-lbl">🚨 Key Limitation</div>
+      K-Means draws <strong>linear decision boundaries</strong> — straight lines (or planes in higher dimensions) between clusters. It literally cannot draw a curved boundary. So concentric rings? Hopeless.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">The "Chicken and Egg" Problem — Initialization Sensitivity</h3>
+    <p>K-Means has a circular dependency: you need centroids to assign points, but you need assigned points to compute centroids. Bad initialization can lead to bad final clusters. This is why you run it multiple times (<code>n_init</code>).</p>
+    <div class="box ana">
+      <div class="box-lbl">🥚 Chicken and Egg</div>
+      To know where the fire stations should be, you need to know which houses they serve. But to know which houses they serve, you need to know where the stations are. K-Means breaks this loop by starting with a guess and iterating.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 2: SILHOUETTE SCORE
+═══════════════════════════════════════ -->
+<section id="silhouette">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--green),var(--teal))">2</div>
+    <h2>Silhouette Score — Measuring Cluster Quality</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--green)">What Is It?</h3>
+    <p>The silhouette score measures how well each point fits its own cluster compared to neighboring clusters. It's a way to evaluate clustering quality <em>without knowing the true labels</em>.</p>
+
+    <div class="formula">s(i) = (b(i) − a(i)) / max(a(i), b(i))</div>
+
+    <p>Where:</p>
+    <ul>
+      <li><strong>a(i)</strong> = average distance from point i to all OTHER points in its cluster ("how tight is my own cluster?")</li>
+      <li><strong>b(i)</strong> = average distance from point i to points in the <em>nearest OTHER cluster</em> ("how far am I from my neighbors?")</li>
+    </ul>
+
+    <h4>Interpreting the Score</h4>
+    <table>
+      <tr><th>Score Range</th><th>Meaning</th></tr>
+      <tr><td>Close to <strong>+1</strong></td><td>Point is well-matched to its cluster and far from others — <span class="hl">great!</span></td></tr>
+      <tr><td>Close to <strong>0</strong></td><td>Point is on the boundary between clusters — ambiguous</td></tr>
+      <tr><td>Close to <strong>−1</strong></td><td>Point might be in the wrong cluster — bad</td></tr>
+    </table>
+
+    <div class="box ana">
+      <div class="box-lbl">🏡 Neighborhood Analogy</div>
+      Imagine you live in a neighborhood. a(i) = average distance to your neighbors (are you close to your own community?). b(i) = average distance to the nearest different neighborhood. If you're much closer to your own neighbors than to outsiders → high silhouette (you clearly belong here). If you're equally close to two neighborhoods → silhouette near 0 (you're on the border).
+    </div>
+
+    <pre><code>from sklearn.metrics import silhouette_score
+
+score = silhouette_score(X, labels)  # Overall average
+# Higher = better clustering
+# Use this to compare different K values!</code></pre>
+
+    <div class="box tip">
+      <div class="box-lbl">💡 Use Both Methods</div>
+      Elbow method (inertia) + Silhouette score together give you a better picture. If elbow suggests K=4 and silhouette peaks at K=4, you're confident!
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 3: DBSCAN
+═══════════════════════════════════════ -->
+<section id="dbscan">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--pink),var(--orange))">3</div>
+    <h2>DBSCAN — Density-Based Clustering</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--pink)">The Core Idea</h3>
+    <p>DBSCAN doesn't use centroids. Instead, it defines clusters as <strong>dense regions</strong> of points separated by sparse regions. Points in sparse regions are noise.</p>
+
+    <div class="box ana">
+      <div class="box-lbl">🌆 City Population Map</div>
+      Look at a population density map. Dense urban areas = clusters. Sparse countryside = noise. DBSCAN would identify Manhattan, Brooklyn, and the Bronx as separate clusters (if they had a gap between them), and a lone farmhouse in the countryside as noise. Crucially, the "city" can be any shape — no need for it to be a circle!
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--pink)">How DBSCAN Works — The Algorithm</h3>
+    <p>Two hyperparameters control everything:</p>
+    <ul>
+      <li><code>eps</code> (ε) — the neighborhood radius. "How far away can a neighbor be?"</li>
+      <li><code>min_samples</code> — minimum points within eps radius to be considered a core point</li>
+    </ul>
+
+    <h4>Three Types of Points</h4>
+    <table>
+      <tr><th>Type</th><th>Definition</th><th>Analogy</th><th>Label</th></tr>
+      <tr><td><span class="badge bp">Core Point</span></td><td>Has ≥ min_samples neighbors within eps</td><td>Busy city center — lots of neighbors</td><td>Gets its own cluster</td></tr>
+      <tr><td><span class="badge bo">Border Point</span></td><td>Not core itself, but within eps of a core point</td><td>City outskirts — near a busy area</td><td>Joins core's cluster</td></tr>
+      <tr><td><span class="badge bc">Noise Point</span></td><td>Neither core nor border — isolated</td><td>Lone farmhouse in countryside</td><td><strong>−1</strong> (noise)</td></tr>
+    </table>
+
+    <div class="diag">
+ Each point: look around in radius eps
+    
+   If ≥ min_samples neighbors → CORE POINT ★
+   If < min_samples but near a core → BORDER POINT ◉  
+   Otherwise → NOISE (label = -1) ✕
+
+ Clusters = chains of core points that can "reach" each other
+ Border points join the cluster of their nearest core point</div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--pink)">Effect of Hyperparameter Changes</h3>
+    <table>
+      <tr><th>Change</th><th>Effect on core points</th><th>Effect on clusters</th></tr>
+      <tr><td>↑ eps (larger radius)</td><td>More neighbors → more core points</td><td>Bigger, fewer clusters; less noise</td></tr>
+      <tr><td>↓ eps (smaller radius)</td><td>Fewer neighbors → fewer core points</td><td>Smaller, more clusters; more noise</td></tr>
+      <tr><td>↑ min_samples (need more)</td><td>Harder to qualify → fewer core points</td><td>More conservative clusters; more noise</td></tr>
+      <tr><td>↓ min_samples (need fewer)</td><td>Easier to qualify → more core points</td><td>More generous clusters; less noise</td></tr>
+    </table>
+
+    <div class="box warn">
+      <div class="box-lbl">⚠️ Quiz Alert</div>
+      Increasing min_samples AND decreasing eps both make it <em>harder</em> to be a core point → FEWER core points, NOT more. Both changes work in the same direction!
+    </div>
+
+    <h4>Parameters vs. Hyperparameters for DBSCAN</h4>
+    <ul>
+      <li><span class="badge bpar">Hyperparameters</span> <code>eps</code>, <code>min_samples</code>, distance metric</li>
+      <li><span class="badge bp">Parameters</span> <strong>None!</strong> DBSCAN is fully <em>non-parametric</em>. It stores nothing — applies rules fresh each time.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--pink)">How to Pick eps — The k-Distance Plot</h3>
+    <p>For each point, find its k-th nearest neighbor distance (where k = min_samples). Sort these distances and plot them. Look for the "knee" in the curve — that's your eps.</p>
+    <pre><code>from sklearn.neighbors import NearestNeighbors
+
+nbrs = NearestNeighbors(n_neighbors=min_samples).fit(X_scaled)
+distances, _ = nbrs.kneighbors(X_scaled)
+k_distances = np.sort(distances[:, -1])  # k-th neighbor distance
+
+plt.plot(k_distances)
+plt.ylabel("Distance to k-th neighbor")
+# Look for the "elbow/knee" — that's your eps!</code></pre>
+
+    <div class="box tip">
+      <div class="box-lbl">💡 Must Scale!</div>
+      DBSCAN uses distances. If feature 1 is in meters and feature 2 is in kilometers, distances are meaningless. Always <code>StandardScaler()</code> your data before DBSCAN!
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--pink)">DBSCAN Strengths and Weaknesses</h3>
+    <div class="g2">
+      <div>
+        <h4>✅ Strengths</h4>
+        <ul>
+          <li><span class="badge bp">Any cluster shape</span> — rings, crescents, S-curves</li>
+          <li><span class="badge bp">No K needed</span> — finds number of clusters automatically</li>
+          <li><span class="badge bp">Noise detection</span> — explicitly labels outliers as −1</li>
+          <li><span class="badge bp">Robust to outliers</span> — they don't distort cluster shapes</li>
+        </ul>
+      </div>
+      <div>
+        <h4>❌ Weaknesses</h4>
+        <ul>
+          <li><span class="badge bc">Varying density</span> — one eps can't fit tight AND sparse clusters</li>
+          <li><span class="badge bc">Scaling required</span> — eps is distance-sensitive</li>
+          <li><span class="badge bc">Hard to tune eps</span> — requires domain knowledge or k-distance plot</li>
+          <li><span class="badge bc">High dimensions</span> — distances become meaningless (curse of dimensionality)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 4: GMM
+═══════════════════════════════════════ -->
+<section id="gmm">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--gold),var(--orange))">4</div>
+    <h2>Gaussian Mixture Models (GMM)</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">The Core Idea</h3>
+    <p>GMM is K-Means's smarter sibling. Instead of assuming all clusters are spheres, GMM assumes each cluster follows a <strong>Gaussian (bell curve) distribution</strong>, which can be stretched into an ellipse of any orientation and size.</p>
+
+    <div class="g2">
+      <div class="box warn">
+        <div class="box-lbl">K-Means</div>
+        <strong>"Each cluster is a ball."</strong><br>Hard assignments: point belongs to exactly one cluster. Circular/spherical boundaries only.
+      </div>
+      <div class="box tip">
+        <div class="box-lbl">GMM</div>
+        <strong>"Each cluster is a Gaussian ellipse."</strong><br>Soft assignments: point belongs to each cluster with some probability. Any elliptical boundary.
+      </div>
+    </div>
+
+    <h4>What is a Gaussian Distribution?</h4>
+    <p>A Gaussian (normal distribution) is the classic bell curve. In 2D, it looks like a hill. GMM says each cluster is a hill — described by its center (mean) and its shape (covariance). The covariance controls whether the hill is round, elongated, or tilted.</p>
+
+    <div class="box ana">
+      <div class="box-lbl">⛰️ Landscape Analogy</div>
+      Imagine data points are people standing on a landscape. Each cluster is a hill (Gaussian). People on top of a hill definitely belong to that cluster. People in the valley between two hills — GMM gives them probabilities: "60% on Hill A, 40% on Hill B." K-Means would force them to pick just one hill.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">Soft vs. Hard Assignments</h3>
+    <table>
+      <tr><th></th><th>K-Means</th><th>GMM</th></tr>
+      <tr><td>Assignment type</td><td>Hard — each point picks one cluster</td><td>Soft — each point gets a probability for each cluster</td></tr>
+      <tr><td>Output</td><td>Label: 0, 1, 2...</td><td>Probabilities: [0.7, 0.2, 0.1] for 3 clusters</td></tr>
+      <tr><td>Boundary</td><td>Sharp line</td><td>Gradual/fuzzy boundary</td></tr>
+    </table>
+    <pre><code>from sklearn.mixture import GaussianMixture
+
+gmm = GaussianMixture(n_components=3, covariance_type='full', random_state=0)
+gmm.fit(X)
+
+labels = gmm.predict(X)           # Hard labels (argmax of probabilities)
+probs = gmm.predict_proba(X)      # Soft: shape (n, K) — probability matrix
+
+# Learned parameters
+gmm.means_        # Shape (K, d) — K cluster centers
+gmm.covariances_  # Shape depends on covariance_type</code></pre>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">Covariance Types — Shape of Clusters</h3>
+    <table>
+      <tr><th>Type</th><th>What it means</th><th>Flexibility</th><th>Risk</th></tr>
+      <tr><td><code>spherical</code></td><td>All clusters = circles (one radius each)</td><td>Least flexible</td><td>Misses elongated clusters</td></tr>
+      <tr><td><code>diag</code></td><td>Axis-aligned ellipses (no tilting)</td><td>Medium</td><td>Misses tilted clusters</td></tr>
+      <tr><td><code>tied</code></td><td>All clusters share ONE covariance shape</td><td>Medium</td><td>Wrong if clusters have different shapes</td></tr>
+      <tr><td><code>full</code></td><td>Each cluster has its own full tilted ellipse</td><td>Most flexible</td><td>Can overfit with few data points</td></tr>
+    </table>
+
+    <div class="box tip">
+      <div class="box-lbl">💡 Which to Use?</div>
+      <strong>full</strong> is the default/most powerful. Use simpler types if you have little data (to avoid overfitting) or if you know the clusters have similar shapes.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">GMM Strengths &amp; Weaknesses</h3>
+    <div class="g2">
+      <div>
+        <h4>✅ Strengths</h4>
+        <ul>
+          <li>Handles <strong>elliptical clusters</strong> of any orientation</li>
+          <li>Provides <strong>uncertainty</strong> (probabilities)</li>
+          <li>Can use <strong>BIC/AIC</strong> to choose n_components (unlike K-Means with just inertia)</li>
+          <li>Handles <strong>overlapping clusters</strong> gracefully</li>
+        </ul>
+      </div>
+      <div>
+        <h4>❌ Weaknesses</h4>
+        <ul>
+          <li>Assumes <strong>Gaussian shape</strong> — fails on rings or crescents</li>
+          <li><strong>Slower</strong> than K-Means (uses EM algorithm)</li>
+          <li>Must still <strong>choose n_components</strong> (K)</li>
+          <li>Can <strong>overfit</strong> with full covariance on small datasets</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 5: HIERARCHICAL CLUSTERING
+═══════════════════════════════════════ -->
+<section id="hierarchical">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--teal),var(--blue))">5</div>
+    <h2>Hierarchical Clustering</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--teal)">The Core Idea</h3>
+    <p>Instead of partitioning into K clusters all at once, hierarchical clustering builds a <strong>tree of nested clusters</strong>. You can then "cut" the tree at any level to get different numbers of clusters — no need to commit to K upfront!</p>
+
+    <div class="box ana">
+      <div class="box-lbl">🌳 Family Tree Analogy</div>
+      Think of a family tree. At the bottom: every person is their own "cluster." Moving up: siblings merge → families merge → extended families merge → the whole species is one cluster at the top. You can "cut" the tree at any generation to get different-sized groupings.
+    </div>
+
+    <h4>Two Approaches</h4>
+    <div class="g2">
+      <div class="box ans">
+        <div class="box-lbl">Bottom-Up (Agglomerative) — More Common</div>
+        Start with every point as its own cluster. Repeatedly <strong>merge</strong> the two closest clusters until one remains.
+      </div>
+      <div class="box tip">
+        <div class="box-lbl">Top-Down (Divisive)</div>
+        Start with all points in one cluster. Repeatedly <strong>split</strong> until every point is its own cluster.
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--teal)">The Dendrogram</h3>
+    <p>A <strong>dendrogram</strong> is the tree diagram that shows the entire clustering history. The y-axis is the distance/dissimilarity at which two clusters were merged. The x-axis shows which points/clusters merged.</p>
+
+    <div class="diag">
+ Distance
+    |
+  5 |         ┌────────────────────┐
+    |          |                    |
+  3 |     ┌───┤                    ├───┐
+    |      |   |                    |   |
+  1 |  ┌──┤   ├──┐              ┌──┤   ├──┐
+    |   |  |   |  |              |  |   |  |
+    |   A  B   C  D              E  F   G  H
+    
+ Cut at height 3 → 2 clusters: {A,B,C,D} and {E,F,G,H}
+ Cut at height 1 → 4 clusters: {A,B}, {C,D}, {E,F}, {G,H}</div>
+
+    <div class="box tip">
+      <div class="box-lbl">💡 Reading a Dendrogram</div>
+      The <strong>height of the horizontal line</strong> where two branches merge = how dissimilar those clusters were. Tall merges = you're forcing together very different groups. Look for the largest vertical gap — that's where you should "cut" for the natural number of clusters.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--teal)">Linkage Criteria — How Do We Measure Cluster Distance?</h3>
+    <p>When merging two clusters, how do you define the distance <em>between</em> them? Different definitions = different shapes of resulting clusters.</p>
+    <table>
+      <tr><th>Linkage</th><th>Distance = ...</th><th>Characteristic</th></tr>
+      <tr><td><strong>Single</strong></td><td>Distance between the <em>closest</em> pair of points (one from each cluster)</td><td>Can create long "chain" clusters; sensitive to outliers. Results in elongated clusters.</td></tr>
+      <tr><td><strong>Complete</strong></td><td>Distance between the <em>farthest</em> pair of points</td><td>Creates compact, roughly equal-sized clusters. More robust.</td></tr>
+      <tr><td><strong>Average</strong></td><td>Average distance between <em>all</em> pairs of points</td><td>Balanced compromise between single and complete.</td></tr>
+      <tr><td><strong>Ward</strong></td><td>Increase in total within-cluster variance after merging</td><td>Most similar to K-Means. Tends to create equally-sized clusters. Often best in practice.</td></tr>
+    </table>
+
+    <div class="box ana">
+      <div class="box-lbl">🌉 Bridge Analogy for Linkage</div>
+      Two groups of people on islands. <strong>Single</strong> = distance between the closest people on each island. <strong>Complete</strong> = distance between the farthest people. <strong>Average</strong> = average distance between all people. <strong>Ward</strong> = how much variance increases if everyone moves to one island.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--teal)">Hierarchical vs. K-Means</h3>
+    <table>
+      <tr><th>Property</th><th>K-Means</th><th>Hierarchical (Agglomerative)</th></tr>
+      <tr><td>Must specify K?</td><td>Yes, beforehand</td><td>No! Choose after seeing dendrogram</td></tr>
+      <tr><td>Speed</td><td>Fast O(nKd)</td><td>Slower O(n² log n) or O(n³)</td></tr>
+      <tr><td>Scalability</td><td>Scales to millions</td><td>Struggles with large n</td></tr>
+      <tr><td>Cluster shapes</td><td>Spherical only</td><td>Depends on linkage (can be flexible)</td></tr>
+      <tr><td>Reproducible?</td><td>No (random init) unless seed set</td><td>Yes — deterministic</td></tr>
+      <tr><td>Visualization</td><td>Elbow/silhouette plot</td><td>Beautiful dendrogram</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 6: PCA
+═══════════════════════════════════════ -->
+<section id="pca">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--accent),var(--pink))">6</div>
+    <h2>PCA — Principal Component Analysis</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--accent)">Why Do We Need Dimensionality Reduction?</h3>
+    <ul>
+      <li><strong>Correlated features</strong> — if height and weight are correlated, you're storing redundant info. PCA merges them.</li>
+      <li><strong>Curse of dimensionality</strong> — in high dimensions, distances get weird and meaningless. Everything looks equally far apart.</li>
+      <li><strong>Visualization</strong> — you can't plot 100D data; PCA gets it to 2D for plotting.</li>
+      <li><strong>Noise removal</strong> — low-variance components often capture noise; dropping them cleans data.</li>
+      <li><strong>Faster downstream models</strong> — fewer features = faster training.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--accent)">The PCA Intuition</h3>
+    <div class="box ana">
+      <div class="box-lbl">📷 Best Camera Angle Analogy</div>
+      Photographing a 3D sculpture: some angles capture its shape well (high variance in the photo — lots of spread). Other angles show it "flat on" (low variance — it looks like a line). PCA finds the angle(s) that capture the MOST spread/variation. Component 1 = the best single angle. Component 2 = the next best angle perpendicular to the first.
+    </div>
+
+    <h4>Formal Goal</h4>
+    <p>Find <strong>k orthogonal directions</strong> (principal components) in d-dimensional space such that projecting the data onto these directions preserves the <em>maximum variance</em>.</p>
+    <ul>
+      <li><strong>Orthogonal</strong> = at 90° to each other (like X and Y axes). This ensures components are uncorrelated.</li>
+      <li><strong>Maximum variance</strong> = the directions that show the most "spread" in the data.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--accent)">The Four Key Matrices — Fully Explained</h3>
+    <table>
+      <tr><th>Matrix</th><th>Shape</th><th>Meaning</th></tr>
+      <tr><td><strong>X</strong></td><td>n × d</td><td>Original data. n = number of examples, d = number of original features.</td></tr>
+      <tr><td><strong>W</strong></td><td>k × d</td><td>The principal components — k "directions" in the original d-dimensional space. Each row is one PC.</td></tr>
+      <tr><td><strong>Z</strong></td><td>n × k</td><td>The transformed/compressed data. Same n examples, now in k-dimensional space.</td></tr>
+      <tr><td><strong>X̂</strong></td><td>n × d</td><td>Reconstruction — approximate recreation of X from Z. Same shape as X but with some info lost.</td></tr>
+    </table>
+
+    <div class="formula">Z = X @ W.T  &nbsp;&nbsp;&nbsp; (compress)
+X̂ = Z @ W  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (reconstruct)</div>
+
+    <div class="box ana">
+      <div class="box-lbl">🎓 Student Test Score Analogy</div>
+      X = 100 students × 20 test scores (all subjects). W = recipe for making 3 "mega-subjects": [overall ability, math vs verbal lean, science vs arts lean]. Z = 100 students × 3 mega-scores. You've compressed 20 test scores into 3 informative numbers per student. X̂ = approximate re-creation of the 20 original scores from the 3 mega-scores.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--accent)">Understanding n, d, k</h3>
+    <ul>
+      <li><span class="hlp">n</span> = number of rows in X = number of data points/examples (doesn't change!)</li>
+      <li><span class="hlp">d</span> = number of columns in X = number of original features = number of coordinates in each cluster center</li>
+      <li><span class="hlp">k</span> = number of rows in W = number of components you keep. <strong>Always k ≤ d.</strong></li>
+    </ul>
+    <div class="box tip">
+      <div class="box-lbl">💡 Shape Check</div>
+      Always verify shapes: Z must be (n, k). W must be (k, d). Then Z@W gives (n,d) = same shape as X. ✓
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--accent)">Explained Variance — How Much Information Do We Keep?</h3>
+    <pre><code>pca.explained_variance_ratio_
+# Example: array([0.4890, 0.3925, 0.0812, ...])
+# PC1 = 48.9%, PC2 = 39.25%, PC3 = 8.12%
+# Together: 48.9 + 39.25 = 88.15% with just 2 components!</code></pre>
+
+    <h4>Scree Plot</h4>
+    <p>Plot explained variance ratio vs. number of components. Look for the "elbow" — the point where additional components explain little extra variance. Components after the elbow are often mostly noise.</p>
+
+    <h4>Cumulative Explained Variance</h4>
+    <p>Add up the ratios: 48.9%, 88.15%, 96.27%... Choose k where cumulative variance exceeds your threshold (often 90–95%).</p>
+
+    <div class="box tip">
+      <div class="box-lbl">💡 Practical Rule</div>
+      If cumulative explained variance reaches 90% at k=5, use n_components=5. You're keeping 90% of information with only 5 features instead of d!
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--accent)">PCA vs. Linear Regression — An Important Distinction</h3>
+    <table>
+      <tr><th></th><th>Linear Regression</th><th>PCA</th></tr>
+      <tr><td>Goal</td><td>Predict y from x (minimize vertical residuals)</td><td>Find directions of max variance (minimize perpendicular distance)</td></tr>
+      <tr><td>Orientation</td><td>Vertical: "predict y given x"</td><td>Perpendicular: "find the axis of max spread"</td></tr>
+      <tr><td>Supervised?</td><td>Yes — needs labels y</td><td>No — only uses X</td></tr>
+      <tr><td>Output</td><td>Predictions for y</td><td>Components W, transformed Z</td></tr>
+    </table>
+    <div class="box ana">
+      <div class="box-lbl">📐 Geometric Difference</div>
+      Regression finds the line that minimizes distances measured <em>straight down</em> (vertically). PCA finds the line that minimizes distances measured <em>perpendicular to the line</em> (at a right angle). For the first PC, it's the line that points along the longest axis of the data cloud.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--accent)">PCA Code — Full Reference</h3>
+    <pre><code>from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+
+# ALWAYS standardize first! PCA is scale-sensitive.
+scaler = StandardScaler()
+X_std = scaler.fit_transform(X)
+
+pca = PCA(n_components=2, random_state=0)
+Z = pca.fit_transform(X_std)      # Compress: shape (n, 2)
+X_reconstructed = pca.inverse_transform(Z)  # Reconstruct: shape (n, d)
+
+# Key attributes
+pca.explained_variance_ratio_    # Per-component fraction of variance
+pca.components_                  # W matrix: shape (k, d) — the directions
+pca.explained_variance_          # Raw variance per component (not ratio)
+pca.n_components_                # k
+pca.mean_                        # Mean of X (subtracted during transform)
+
+# To reconstruct manually:
+X_hat = Z @ pca.components_ + pca.mean_
+
+# To reconstruct single example i:
+Z[i, :] @ pca.components_</code></pre>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--accent)">Why PCA is "Linear" + Information Loss</h3>
+    <p><strong>Linear</strong>: Each principal component is a weighted sum of original features. No x², no x×y — just linear combinations. The transformation Z = X @ W.T is a matrix multiplication = linear operation.</p>
+    <p><strong>Information Loss</strong>: When k &lt; d, you discard dimensions k+1 through d. The variance in those directions is lost. Setting k = d preserves all information (but reduces nothing). The X̂ you get from Z @ W is an approximation of X.</p>
+
+    <div class="box warn">
+      <div class="box-lbl">⚠️ Must Center (Standardize)</div>
+      PCA is variance-based. Variance is measured around the mean. If data isn't centered, PCA's first component might just point toward the mean (a global offset), not the actual direction of spread. sklearn's PCA centers automatically. TruncatedSVD (used for sparse data) does NOT center.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 7: SVD
+═══════════════════════════════════════ -->
+<section id="svd">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--blue),var(--teal))">7</div>
+    <h2>SVD — Singular Value Decomposition</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">What is SVD?</h3>
+    <p>SVD is the mathematical engine that powers PCA (and much more). Any matrix X can be exactly decomposed as:</p>
+    <div class="formula">X = U Σ Vᵀ</div>
+    <table>
+      <tr><th>Matrix</th><th>Shape</th><th>Meaning</th></tr>
+      <tr><td><strong>U</strong></td><td>n × n</td><td>"Left singular vectors" — directions in example space. Columns are orthogonal unit vectors.</td></tr>
+      <tr><td><strong>Σ</strong> (Sigma)</td><td>n × d (diagonal)</td><td>"Singular values" on the diagonal, all non-negative, sorted largest to smallest. Represents importance of each direction.</td></tr>
+      <tr><td><strong>Vᵀ</strong></td><td>d × d</td><td>"Right singular vectors" — directions in feature space. Rows are the principal components (= rows of W in PCA).</td></tr>
+    </table>
+
+    <div class="box ana">
+      <div class="box-lbl">🎭 Theater Analogy</div>
+      Imagine a movie can be described by: (U) how each audience member relates to underlying "movie archetypes," (Σ) how important each archetype is (blockbuster vs. niche), (V) how each movie archetype relates to genres/features. SVD finds these hidden archetypes automatically!
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--blue)">Truncated SVD — The Compressed Version</h3>
+    <p>Full SVD computes ALL components. <strong>Truncated SVD</strong> keeps only the top k singular values/vectors (the most important ones). This gives the best rank-k approximation of X.</p>
+
+    <div class="formula">X ≈ Uₖ Σₖ Vₖᵀ</div>
+
+    <p>Where the subscript k means we keep only the top k columns/rows.</p>
+
+    <h4>How PCA relates to SVD</h4>
+    <ul>
+      <li>sklearn's PCA internally uses SVD on the centered data</li>
+      <li>The principal components (rows of W) are the rows of Vᵀ</li>
+      <li>The singular values in Σ relate to explained variance</li>
+    </ul>
+
+    <h4>When to Use TruncatedSVD vs. PCA</h4>
+    <table>
+      <tr><th></th><th>PCA</th><th>TruncatedSVD</th></tr>
+      <tr><td>Centers data?</td><td>Yes (automatically)</td><td>No</td></tr>
+      <tr><td>Best for</td><td>Dense data matrices</td><td>Sparse matrices (text, TF-IDF)</td></tr>
+      <tr><td>Use case</td><td>Images, tabular data</td><td>Document-term matrices (LSA)</td></tr>
+    </table>
+    <div class="box warn">
+      <div class="box-lbl">⚠️ Sparse Data Warning</div>
+      For TF-IDF matrices (text data), you CANNOT center the data (it would destroy sparsity — filling billions of zeros with non-zero values). TruncatedSVD handles this correctly. PCA would be catastrophic on sparse data!
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 8: NMF
+═══════════════════════════════════════ -->
+<section id="nmf">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--green),var(--blue))">8</div>
+    <h2>NMF — Non-negative Matrix Factorization</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--green)">The Core Idea</h3>
+    <p>NMF decomposes X ≈ W × H where <strong>all values in W and H must be ≥ 0</strong>. This non-negativity constraint forces parts-based, additive representations.</p>
+
+    <div class="formula">X ≈ W × H &nbsp;&nbsp; (all entries ≥ 0)</div>
+
+    <table>
+      <tr><th>Matrix</th><th>Shape</th><th>Meaning</th></tr>
+      <tr><td><strong>X</strong></td><td>n × d</td><td>Original non-negative data</td></tr>
+      <tr><td><strong>W</strong></td><td>n × k</td><td>Activations — how much each example uses each "part"</td></tr>
+      <tr><td><strong>H</strong></td><td>k × d</td><td>Components/basis — the "parts" (like PCA's W matrix)</td></tr>
+    </table>
+
+    <div class="box ana">
+      <div class="box-lbl">🧩 LEGO Bricks Analogy</div>
+      Imagine faces are built from LEGO parts: eyebrows, eyes, nose, mouth. W says "use 3 eyebrow bricks, 2 eye bricks, 1 nose brick" for this face. H defines what each brick looks like. You can ONLY add bricks — you can't "subtract" a nose. This is what non-negativity does: everything is additive, interpretable, and physically meaningful.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--green)">PCA vs. NMF — Complete Comparison</h3>
+    <table>
+      <tr><th>Property</th><th>PCA</th><th>NMF</th></tr>
+      <tr><td>Data constraint</td><td>Any data (pos or neg)</td><td>X must be non-negative (≥ 0)</td></tr>
+      <tr><td>Component values</td><td>Positive AND negative</td><td>All positive (additive)</td></tr>
+      <tr><td>Orthogonality</td><td>Components always orthogonal (90°)</td><td>Components generally NOT orthogonal</td></tr>
+      <tr><td>Ordering</td><td>PC1 > PC2 > ... by variance explained</td><td>No natural ordering of components</td></tr>
+      <tr><td>Interpretation</td><td>Can be abstract (positive + negative loadings)</td><td>Usually interpretable as "parts" (additive)</td></tr>
+      <tr><td>Uniqueness</td><td>Unique solution</td><td>Non-unique — depends on initialization</td></tr>
+      <tr><td>Best for</td><td>General compression &amp; visualization</td><td>Images (pixels), text (counts), biology (gene expression)</td></tr>
+    </table>
+
+    <div class="box tip">
+      <div class="box-lbl">💡 When to Use NMF</div>
+      When your data is naturally non-negative AND you want interpretable "parts":
+      <ul>
+        <li>Pixel intensities (0–255) — faces = sum of facial features</li>
+        <li>Word counts or TF-IDF — documents = mixture of topics</li>
+        <li>Gene expression levels — diseases = combinations of gene patterns</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--green)">NMF in Practice — Topic Modeling</h3>
+    <p>NMF is often used for <strong>topic modeling</strong>: discovering hidden topics in text. Each document = mixture of topics (row of W). Each topic = mixture of words (row of H). You can inspect H to see what words define each topic.</p>
+    <pre><code>from sklearn.decomposition import NMF
+from sklearn.preprocessing import MinMaxScaler
+
+# Scale to [0,1] — NMF needs non-negative input
+X_scaled = MinMaxScaler().fit_transform(X_nonneg)
+
+nmf = NMF(n_components=5, init='nndsvda', random_state=0, max_iter=2000)
+W = nmf.fit_transform(X_scaled)   # Activations: shape (n, 5)
+H = nmf.components_               # Parts/topics: shape (5, d)
+
+# For text topic modeling:
+# W[i] = how much document i belongs to each topic
+# H[j] = the word weights for topic j (inspect top words!)</code></pre>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 9: LSA
+═══════════════════════════════════════ -->
+<section id="lsa">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--orange),var(--gold))">9</div>
+    <h2>LSA — Latent Semantic Analysis</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--orange)">What Is LSA?</h3>
+    <p>LSA (Latent Semantic Analysis) is applying TruncatedSVD to a <strong>document-term matrix</strong> (like TF-IDF). It discovers hidden "topics" or semantic dimensions in text data.</p>
+
+    <div class="box ana">
+      <div class="box-lbl">📚 Library Analogy</div>
+      You have 10,000 books and want to group them by topic. But two books on "machine learning" might use different words: one says "neural networks," another says "deep learning." LSA discovers that these words appear in the same contexts and are semantically related — even if they don't co-occur! It finds the hidden topics underlying the words.
+    </div>
+
+    <h4>The Pipeline</h4>
+    <div class="step"><div class="step-num">1</div><div><strong>Get text</strong> — a collection of documents</div></div>
+    <div class="step"><div class="step-num">2</div><div><strong>TF-IDF</strong> — convert to a sparse document-term matrix X (n docs × d words)</div></div>
+    <div class="step"><div class="step-num">3</div><div><strong>TruncatedSVD (LSA)</strong> — reduce to k dimensions (topics). Result: Z matrix (n × k)</div></div>
+    <div class="step"><div class="step-num">4</div><div><strong>Use Z</strong> — cluster documents, find similar documents, visualize topics</div></div>
+
+    <pre><code>from sklearn.decomposition import TruncatedSVD
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Step 1: Create TF-IDF matrix (sparse!)
+tfidf = TfidfVectorizer(max_features=5000)
+X_tfidf = tfidf.fit_transform(documents)  # Shape: (n_docs, 5000)
+
+# Step 2: LSA = TruncatedSVD on TF-IDF
+lsa = TruncatedSVD(n_components=50, random_state=0)
+Z = lsa.fit_transform(X_tfidf)  # Shape: (n_docs, 50)
+
+# Now Z is a dense 50-dim "topic" representation of each doc
+# Use it for clustering, similarity, visualization</code></pre>
+
+    <h4>Why NOT PCA for Text?</h4>
+    <p>TF-IDF matrices are extremely sparse (mostly zeros — a document uses only a tiny fraction of all words). PCA centers the data first (subtracts the mean), which destroys sparsity. TruncatedSVD skips centering and works directly on sparse matrices.</p>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--orange)">TF-IDF — Quick Reminder</h3>
+    <p><strong>TF</strong> = Term Frequency: how often a word appears in THIS document. <strong>IDF</strong> = Inverse Document Frequency: how rare the word is across ALL documents. Common words like "the" get low IDF (appear everywhere, not informative). Rare but topic-specific words get high IDF.</p>
+    <div class="formula">TF-IDF(word, doc) = TF(word, doc) × log(N / df(word))</div>
+    <p>N = total documents, df(word) = number of documents containing the word.</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 10: AUTOENCODERS
+═══════════════════════════════════════ -->
+<section id="autoencoder">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--pink),var(--accent))">10</div>
+    <h2>Autoencoders — Neural Network Dimensionality Reduction</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--pink)">What Is an Autoencoder?</h3>
+    <p>An autoencoder is a neural network that learns to <strong>compress data into a smaller representation and then reconstruct it</strong>. It has two parts:</p>
+
+    <div class="g2">
+      <div class="box ans">
+        <div class="box-lbl">🔵 Encoder</div>
+        Takes the input (e.g., 784-pixel image) and compresses it into a small "latent space" (e.g., 32 numbers). Like PCA but with non-linear layers.
+      </div>
+      <div class="box tip">
+        <div class="box-lbl">🟡 Decoder</div>
+        Takes the compressed representation and tries to reconstruct the original input. Trained to minimize reconstruction error.
+      </div>
+    </div>
+
+    <div class="diag">
+Input (784)  →  [Encoder layers]  →  Bottleneck (32)  →  [Decoder layers]  →  Output (784)
+                                        ↑
+                               "Latent space" or
+                               "Embedding" = compressed representation</div>
+
+    <div class="box ana">
+      <div class="box-lbl">📦 Shipping Analogy</div>
+      You need to mail a sofa internationally but can only send a small box. The encoder "disassembles" the sofa into compact instructions that fit in the box. The decoder "reassembles" it from those instructions. The quality of reconstruction depends on how good the compression is. The "instructions in the box" = the latent representation.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--pink)">Autoencoder vs. PCA</h3>
+    <table>
+      <tr><th>Property</th><th>PCA</th><th>Autoencoder</th></tr>
+      <tr><td>Linearity</td><td>Linear only (weighted sums)</td><td>Non-linear (activation functions like ReLU)</td></tr>
+      <tr><td>Complexity</td><td>Simple, fast, closed-form</td><td>Complex, needs training with backprop</td></tr>
+      <tr><td>Quality</td><td>Optimal for linear structure</td><td>Better for complex, non-linear structure (images, audio)</td></tr>
+      <tr><td>Interpretability</td><td>Principal components interpretable</td><td>Latent space usually not interpretable</td></tr>
+      <tr><td>Data need</td><td>Works with small datasets</td><td>Needs lots of data to train well</td></tr>
+    </table>
+
+    <div class="box tip">
+      <div class="box-lbl">💡 When Autoencoders Win</div>
+      For images, audio, or any data with complex non-linear structure (e.g., faces, speech), autoencoders learn much better representations than PCA. PCA for faces would give abstract linear combinations; an autoencoder might learn to represent "face angle," "lighting," "expression" etc. in its latent dimensions.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 11: SCALING RULES
+═══════════════════════════════════════ -->
+<section id="scaling">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--teal),var(--green))">11</div>
+    <h2>Scaling — When and How to Scale Your Data</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--teal)">Why Scaling Matters</h3>
+    <p>Many algorithms use <strong>distances</strong> (Euclidean distance). If feature 1 is in kilometers (range 0–10,000) and feature 2 is in grams (range 0–1), distances will be dominated by feature 1. Feature 2 effectively gets ignored!</p>
+
+    <div class="box ana">
+      <div class="box-lbl">📏 Ruler Analogy</div>
+      Measuring similarity between cities: one axis in km (Moscow to Tokyo = 7,500), another in degrees latitude (difference = 20). The km value utterly dominates. Scaling puts them on equal footing — "number of standard deviations from mean."
+    </div>
+
+    <h4>The Two Main Scalers</h4>
+    <table>
+      <tr><th>Scaler</th><th>Formula</th><th>Output Range</th><th>Use When</th></tr>
+      <tr><td><strong>StandardScaler</strong></td><td>(x − mean) / std</td><td>Mean=0, Std=1 (unbounded)</td><td>General purpose. Use before PCA, K-Means, DBSCAN. Handles outliers reasonably.</td></tr>
+      <tr><td><strong>MinMaxScaler</strong></td><td>(x − min) / (max − min)</td><td>[0, 1] exactly</td><td>When you need truly non-negative output (NMF!). Sensitive to outliers.</td></tr>
+    </table>
+
+    <h4>When Does Each Algorithm Need Scaling?</h4>
+    <table>
+      <tr><th>Algorithm</th><th>Scale?</th><th>Why</th></tr>
+      <tr><td>K-Means</td><td>✅ YES</td><td>Uses Euclidean distances — different scales = one feature dominates</td></tr>
+      <tr><td>DBSCAN</td><td>✅ YES — CRITICAL</td><td>eps is a distance threshold — meaningless without scaling</td></tr>
+      <tr><td>Hierarchical</td><td>✅ YES</td><td>Distance-based linkage</td></tr>
+      <tr><td>PCA</td><td>✅ YES</td><td>High-variance features dominate components. StandardScaler equalizes.</td></tr>
+      <tr><td>NMF</td><td>MinMaxScaler</td><td>Needs non-negative input. MinMaxScaler → [0,1]</td></tr>
+      <tr><td>GMM</td><td>✅ YES</td><td>Like K-Means — uses Euclidean distances internally</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SECTION 12: BIG COMPARISON TABLE
+═══════════════════════════════════════ -->
+<section id="compare">
+  <div class="sh">
+    <div class="snum" style="background:linear-gradient(135deg,var(--gold),var(--pink))">★</div>
+    <h2>The Ultimate Comparison Table</h2>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">Clustering Algorithms</h3>
+    <table>
+      <tr><th>Property</th><th>K-Means</th><th>DBSCAN</th><th>GMM</th><th>Hierarchical</th></tr>
+      <tr><td>Cluster shape</td><td>Spherical only</td><td>Any shape</td><td>Elliptical</td><td>Depends on linkage</td></tr>
+      <tr><td>Need to set K?</td><td>Yes</td><td>No</td><td>Yes</td><td>No (cut after)</td></tr>
+      <tr><td>Handles noise?</td><td>No</td><td>Yes (−1 label)</td><td>Partial</td><td>No</td></tr>
+      <tr><td>Soft assignments?</td><td>No</td><td>No</td><td>Yes!</td><td>No</td></tr>
+      <tr><td>Hyperparameters</td><td>K</td><td>eps, min_samples</td><td>K, cov_type</td><td>linkage, K</td></tr>
+      <tr><td>Parameters learned</td><td>K centroids</td><td>None (non-parametric)</td><td>K means + covariances</td><td>None (non-parametric)</td></tr>
+      <tr><td>Speed</td><td>Fast</td><td>Medium</td><td>Slower</td><td>Slow (n²)</td></tr>
+      <tr><td>Scalability</td><td>Excellent</td><td>Good</td><td>Medium</td><td>Poor</td></tr>
+      <tr><td>Must scale data</td><td>Yes</td><td>Yes (critical!)</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>Visualization</td><td>Elbow/silhouette</td><td>k-dist plot</td><td>BIC/AIC</td><td>Dendrogram</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">Dimensionality Reduction Methods</h3>
+    <table>
+      <tr><th>Property</th><th>PCA</th><th>NMF</th><th>SVD/LSA</th><th>Autoencoder</th></tr>
+      <tr><td>Type</td><td>Linear</td><td>Linear</td><td>Linear</td><td>Non-linear</td></tr>
+      <tr><td>Data constraint</td><td>Any</td><td>Non-negative only</td><td>Any (sparse OK)</td><td>Any</td></tr>
+      <tr><td>Components orthogonal?</td><td>Yes always</td><td>No</td><td>Yes</td><td>No</td></tr>
+      <tr><td>Clear ordering?</td><td>Yes (by variance)</td><td>No</td><td>Yes (by σ)</td><td>No</td></tr>
+      <tr><td>Allows negatives?</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>Best for</td><td>General use</td><td>Parts-based (faces, topics)</td><td>Sparse text (TF-IDF)</td><td>Complex images/audio</td></tr>
+      <tr><td>Hyperparameter</td><td>k (n_components)</td><td>k (n_components)</td><td>k (n_components)</td><td>Architecture, latent dim</td></tr>
+      <tr><td>Parameters</td><td>W + variances</td><td>W and H matrices</td><td>U, Σ, V</td><td>Neural network weights</td></tr>
+      <tr><td>Info loss when k&lt;d?</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>Reconstruction?</td><td>X̂ = Z @ W</td><td>X̂ ≈ W @ H</td><td>X̂ ≈ Uₖ Σₖ Vₖᵀ</td><td>Decoder(Encoder(X))</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">Choosing the Right Algorithm — Decision Guide</h3>
+    <table>
+      <tr><th>Situation</th><th>Best Choice</th><th>Why</th></tr>
+      <tr><td>Round, similar-sized blobs, need speed</td><td>K-Means</td><td>Fast, simple, perfect for spherical clusters</td></tr>
+      <tr><td>Unknown number of clusters, weird shapes</td><td>DBSCAN</td><td>Finds K automatically, handles any shape</td></tr>
+      <tr><td>Need probability of cluster membership</td><td>GMM</td><td>Only one with soft assignments</td></tr>
+      <tr><td>Want to explore cluster structure visually</td><td>Hierarchical + Dendrogram</td><td>See all possible groupings at once</td></tr>
+      <tr><td>Compress dense numerical data</td><td>PCA</td><td>Best general-purpose linear reduction</td></tr>
+      <tr><td>Non-negative data, need interpretable parts</td><td>NMF</td><td>Additive, parts-based decomposition</td></tr>
+      <tr><td>Sparse text data (TF-IDF)</td><td>TruncatedSVD / LSA</td><td>Works on sparse matrices, no centering needed</td></tr>
+      <tr><td>Complex images/audio</td><td>Autoencoder</td><td>Non-linear, captures complex structure</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">Key Formulas Summary</h3>
+    <table>
+      <tr><th>Formula</th><th>Meaning</th></tr>
+      <tr><td><code>Z = X @ W.T</code></td><td>PCA: compress X to lower-dimensional Z</td></tr>
+      <tr><td><code>X̂ = Z @ W</code></td><td>PCA: reconstruct X from Z (approximate)</td></tr>
+      <tr><td><code>Z[i] @ W</code></td><td>Reconstruct single example i from PCA</td></tr>
+      <tr><td><code>X = U Σ Vᵀ</code></td><td>Full SVD decomposition</td></tr>
+      <tr><td><code>X ≈ W × H (≥0)</code></td><td>NMF factorization</td></tr>
+      <tr><td><code>s(i) = (b−a)/max(a,b)</code></td><td>Silhouette score for point i</td></tr>
+      <tr><td><code>Inertia = Σ||xᵢ−μₖ||²</code></td><td>K-Means objective (minimize this)</td></tr>
+      <tr><td>Euclidean dist = √(Σ(xᵢ−yᵢ)²)</td><td>Straight-line distance between two points</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3 style="color:var(--gold)">Critical True/False Reference</h3>
+    <table>
+      <tr><th>Statement</th><th>T/F</th><th>Key Reason</th></tr>
+      <tr><td>↑ min_samples + ↓ eps → more core points in DBSCAN</td><td>❌ FALSE</td><td>Both make core status harder to achieve</td></tr>
+      <tr><td>K-Means label numbers are meaningful</td><td>❌ FALSE</td><td>Only grouping matters, not the number</td></tr>
+      <tr><td>PCA components are always orthogonal</td><td>✅ TRUE</td><td>Mathematical guarantee</td></tr>
+      <tr><td>NMF components are orthogonal</td><td>❌ FALSE</td><td>Non-negativity ≠ orthogonality</td></tr>
+      <tr><td>NMF works on negative data</td><td>❌ FALSE</td><td>Requires all X ≥ 0</td></tr>
+      <tr><td>DBSCAN has no learned parameters</td><td>✅ TRUE</td><td>Non-parametric model</td></tr>
+      <tr><td>PCA always causes information loss</td><td>⚠️ FALSE when k=d</td><td>Loss only occurs when k &lt; d</td></tr>
+      <tr><td>TruncatedSVD centers data like PCA</td><td>❌ FALSE</td><td>TruncatedSVD does NOT center — use on sparse data</td></tr>
+      <tr><td>Can naively ensemble cluster labels from different methods</td><td>❌ FALSE</td><td>Labels are arbitrary across methods</td></tr>
+      <tr><td>PCA is a linear dimensionality reduction method</td><td>✅ TRUE</td><td>Each component is a linear combination of features</td></tr>
+    </table>
+  </div>
+</section>
+
+</div><!-- end container -->
+</body>
+</html>
